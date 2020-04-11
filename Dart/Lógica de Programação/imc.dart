@@ -1,22 +1,31 @@
 import 'dart:io';
 
 main() {
-	//função: calcular o Indice de Massa Corporal
 	//pegar o peso
 	//pegar a altura
 	//realizar o calculo
 	//retornar o imc
+	userInput(); //chama a função userInput
+}
 
+userInput(){
 	print("Digite seu peso (sem ponto ou vírgula)");
-	var textPeso = stdin.readLineSync();
-	var Peso = int.parse(textPeso);
+	String textPeso = stdin.readLineSync();
+	int peso = int.parse(textPeso); //Passa o valor de textPeso de String para Inteiro
 
 	print("Digite sua altura (utilize um ponto para separar os decimais)");
-	var textAltura = stdin.readLineSync();
-	var Altura = double.parse(textAltura);
+	String textAltura = stdin.readLineSync();
+	double altura = double.parse(textAltura);
 
-	var Imc = Peso / (Altura * Altura);
+	double Imc = calcImc(peso, altura);
+	imprimirResultado(Imc);
+}
 
+double calcImc(int peso, double altura){
+	return peso / (altura * altura);
+}
+
+imprimirResultado(double Imc){
 	if(Imc < 18.5){
 		print("Abaixo do peso");
 	} else if(Imc > 18.5 && Imc < 24.9) {
@@ -30,5 +39,4 @@ main() {
 	} else {
 		print("Obesidade grau 3");
 	}
-
 }
